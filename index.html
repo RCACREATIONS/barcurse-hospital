@@ -74,13 +74,10 @@
         <link rel="icon" href="logo1.png" />
         <script src="_next/static/chunks/polyfills-42372ed130431b0a.js" nomodule=""></script>
         <style>
-            img[alt="logo"],
-            img[alt="Logo"] {
+            .force-visible-logo {
                 display: inline-block !important;
                 visibility: visible !important;
                 opacity: 1 !important;
-                width: 32px !important;
-                height: 32px !important;
                 position: relative !important;
                 z-index: 9999 !important;
                 pointer-events: auto !important;
@@ -96,7 +93,7 @@
                 class="bg-white py-4 w-full flex justify-between items-center px-2 lg:px-12 xl:px-32 fixed left-0 right-0 top-0 z-50 border-b-4 border-blue"
             >
                 <a class="flex justify-start items-center gap-2" href="index.html"
-                    ><img alt="logo" class="w-8 h-8" style="display: inline-block !important; visibility: visible !important; opacity: 1 !important; flex-shrink: 0; position: relative; z-index: 9999;" src="logo1.png" />
+                    ><img alt="logo" class="w-8 h-8 force-visible-logo" style="flex-shrink: 0;" src="logo1.png" />
                     <div class="flex flex-col items-start">
                         <span class="text-lg lg:text-2xl font-extrabold tracking-tighter text-darkblue leading-none"
                             >Barcruse</span
@@ -1637,8 +1634,8 @@
                             ><div>
                                 <img
                                     alt="Logo"
-                                    class="w-8 lg:w-10 h-8 lg:h-10"
-                                    style="display: inline-block; flex-shrink: 0"
+                                    class="w-8 lg:w-10 h-8 lg:h-10 force-visible-logo"
+                                    style="flex-shrink: 0"
                                     src="logo1.png"
                                 />
                             </div>
