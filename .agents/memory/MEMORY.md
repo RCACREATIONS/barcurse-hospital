@@ -1,0 +1,1 @@
+- [Barcruse static site setup](barcruse-setup.md) — HTTrack mirror converted to live static site; Next.js chunks must be removed (they blank the page), CSS kept, AOS+Swiper added via CDN.
