@@ -85,123 +85,75 @@
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" />
+
+    <style id="mobile-nav-css">
+      /* Mobile nav drawer */
+      #main-nav { display:none; position:absolute; top:100%; left:0; right:0;
+                  flex-direction:column; background:#1B2A4A; color:#fff;
+                  z-index:40; box-shadow:0 8px 20px rgba(0,0,0,.25);
+                  padding:0.5rem 1.5rem 1rem; }
+      #main-nav.nav-open { display:flex; }
+      #main-nav a { display:block; padding:0.75rem 0; font-size:0.875rem;
+                    border-bottom:1px solid rgba(255,255,255,.12); color:#fff; }
+      #main-nav a:last-child { border-bottom:none; }
+      #main-nav .mobile-book-btn { margin-top:0.75rem; background:#fff;
+                                   color:#1B2A4A; padding:0.6rem 1.25rem;
+                                   border-radius:6px; font-weight:600;
+                                   font-size:0.875rem; display:inline-block; }
+      @media(min-width:1024px) {
+        #main-nav { display:flex !important; flex-direction:row; position:static;
+                    background:transparent; color:#000; box-shadow:none;
+                    padding:0; align-items:center; gap:1.5rem; }
+        #main-nav a { padding:0; border-bottom:none; color:inherit; width:auto; }
+        #main-nav .mobile-book-btn { display:none; }
+        #hamburger-btn { display:none !important; }
+      }
+    </style>
 </head>
     <body class="__variable_188709 __variable_9a8899 antialiased">
         <!--$-->
         <div class="overflow-x-hidden bg-white text-black">
-            <div
-                class="bg-white py-4 w-full flex justify-between items-center px-2 lg:px-12 xl:px-32 fixed left-0 right-0 top-0 z-50 border-b-4 border-blue"
-            >
-                <a class="flex justify-start items-center gap-2" href="index.html"
-                    ><img alt="logo" class="w-8 h-8 force-visible-logo" style="flex-shrink: 0;" src="logo1.png" />
-                    <div class="flex flex-col items-start">
-                        <span class="text-lg lg:text-2xl font-extrabold tracking-tighter text-darkblue leading-none"
-                            >Barcruse</span
-                        ><span class="text-blue leading-none text-sm">Outpatient Clinic</span>
-                    </div></a
-                >
-                <div class="flex lg:hidden cursor-pointer">
-                    <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 512 512"
-                        class="text-darkblue"
-                        height="1em"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"></path>
-                    </svg>
-                </div>
-                <div class="hidden cursor-pointer">
-                    <svg
-                        stroke="currentColor"
-                        fill="currentColor"
-                        stroke-width="0"
-                        viewBox="0 0 512 512"
-                        class="text-darkblue text-2xl"
-                        height="1em"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            d="M405 136.798L375.202 107 256 226.202 136.798 107 107 136.798 226.202 256 107 375.202 136.798 405 256 285.798 375.202 405 405 375.202 285.798 256z"
-                        ></path>
-                    </svg>
-                </div>
-                <div
-                    class="hidden lg:flex flex items-center gap-6 bg-darkblue lg:bg-white w-full lg:w-auto fixed lg:static top-16 left-0 py-8 lg:py-0 text-white lg:text-black"
-                >
-                    <a class="text-sm hover:underline" href="index.html">Home</a
-                    ><a class="text-sm hover:underline" href="index.html#about_us">About Us</a
-                    ><a class="text-sm hover:underline" href="index.html#our_services">Our Services</a
-                    ><a class="text-sm hover:underline" href="index.html#blog">Blog</a
-                    ><a class="text-sm hover:underline" href="index.html#contact_us">Contact Us</a>
-                    <div class="flex lg:hidden">
-                        <a
-                            class="bg-white px-6 py-3 text-darkblue rounded-md text-sm hover:bg-blue flex justify-center items-center gap-2"
-                            href="index.html#book_appointment"
-                            ><svg
-                                stroke="currentColor"
-                                fill="currentColor"
-                                stroke-width="0"
-                                viewBox="0 0 448 512"
-                                class="text-lg"
-                                height="1em"
-                                width="1em"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
-                                ></path></svg
-                            >Book Appointment</a
-                        >
+            <div class="bg-white py-4 w-full flex justify-between items-center px-2 lg:px-12 xl:px-32 fixed left-0 right-0 top-0 z-50 border-b-4 border-blue" style="border-bottom-color:#5B8CFF;">
+                <a class="flex justify-start items-center gap-2" href="index.html">
+                    <img alt="logo" style="width:2rem;height:2rem;flex-shrink:0;" src="logo1.png" />
+                    <div class="flex flex-col items-start" style="line-height:1.1;">
+                        <span class="text-lg lg:text-2xl font-extrabold tracking-tighter text-darkblue" style="line-height:1;">Barcruse</span>
+                        <span class="text-blue" style="font-size:0.75rem;line-height:1;">Outpatient Clinic</span>
                     </div>
-                </div>
+                </a>
+
+                <button id="hamburger-btn" style="display:flex;align-items:center;justify-content:center;padding:0.4rem;background:none;border:none;cursor:pointer;" aria-label="Open menu">
+                    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" class="text-darkblue" style="width:1.75rem;height:1.75rem;" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M32 96v64h448V96H32zm0 128v64h448v-64H32zm0 128v64h448v-64H32z"/>
+                    </svg>
+                </button>
+
+                <nav id="main-nav">
+                    <a href="index.html">Home</a>
+                    <a href="index.html#about_us">About Us</a>
+                    <a href="index.html#our_services">Our Services</a>
+                    <a href="index.html#blog">Blog</a>
+                    <a href="index.html#contact_us">Contact Us</a>
+                    <a class="mobile-book-btn" href="index.html#book_appointment">Book Appointment</a>
+                </nav>
+
                 <div class="hidden lg:flex">
-                    <a
-                        class="bg-darkblue px-6 py-3 text-white rounded-md text-sm hover:bg-blue flex justify-center items-center gap-2"
-                        href="index.html#book_appointment"
-                        ><svg
-                            stroke="currentColor"
-                            fill="currentColor"
-                            stroke-width="0"
-                            viewBox="0 0 448 512"
-                            class="text-lg"
-                            height="1em"
-                            width="1em"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"
-                            ></path></svg
-                        >Book Appointment</a
-                    >
+                    <a class="bg-darkblue px-6 py-3 text-white rounded-md text-sm hover:bg-blue flex justify-center items-center gap-2" href="index.html#book_appointment">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg"><path d="M148 288h-40c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12zm108-12v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 96v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm-96 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm192 0v-40c0-6.6-5.4-12-12-12h-40c-6.6 0-12 5.4-12 12v40c0 6.6 5.4 12 12 12h40c6.6 0 12-5.4 12-12zm96-260v352c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V112c0-26.5 21.5-48 48-48h48V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h128V12c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v52h48c26.5 0 48 21.5 48 48zm-48 346V160H48v298c0 3.3 2.7 6 6 6h340c3.3 0 6-2.7 6-6z"/></svg>
+                        Book Appointment
+                    </a>
                 </div>
             </div>
+
+            
+            <!-- Hero section -->
             <div class="relative w-full top-0 left-0 right-0 min-h-screen">
                 <div class="absolute inset-0 z-0">
                     <div class="swiper mySwiper w-full h-full">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div
-                                    class="w-full h-full bg-cover bg-center"
-                                    style="background-image: url(pic58.webp)"
-                                ></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div
-                                    class="w-full h-full bg-cover bg-center"
-                                    style="background-image: url(pic59.webp)"
-                                ></div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div
-                                    class="w-full h-full bg-cover bg-center"
-                                    style="background-image: url(pic60.webp)"
-                                ></div>
-                            </div>
+                            <div class="swiper-slide"><div class="w-full h-full bg-cover bg-center" style="background-image:url(pic58.webp);min-height:100vh;"></div></div>
+                            <div class="swiper-slide"><div class="w-full h-full bg-cover bg-center" style="background-image:url(pic59.webp);min-height:100vh;"></div></div>
+                            <div class="swiper-slide"><div class="w-full h-full bg-cover bg-center" style="background-image:url(pic60.webp);min-height:100vh;"></div></div>
                         </div>
                     </div>
                 </div>
@@ -1725,7 +1677,7 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-      AOS.init({ once: true, duration: 700 });
+      AOS.init({ once: true, duration: 700, offset: 50 });
       // Hero slider
       new Swiper('.mySwiper', {
         loop: true,
@@ -1747,6 +1699,27 @@
         });
       }
     </script>
+
+<script>
+(function() {
+  var btn = document.getElementById('hamburger-btn');
+  var nav = document.getElementById('main-nav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function() {
+    nav.classList.toggle('hidden');
+  });
+  nav.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (window.innerWidth < 1024) nav.classList.add('hidden');
+    });
+  });
+  document.addEventListener('click', function(e) {
+    if (window.innerWidth < 1024 && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.add('hidden');
+    }
+  });
+})();
+</script>
 </body>
     
 </html>
