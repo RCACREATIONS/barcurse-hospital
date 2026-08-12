@@ -23,30 +23,50 @@ modal?.addEventListener("click", (event) => {
   }
 });
 
-document.querySelectorAll("form[id^='appointment-form']").forEach((form) => form.addEventListener("submit", async (event) => {
+// All appointment requests are sent straight to the clinic's WhatsApp number.
+const WHATSAPP_NUMBER = "2347049088169";
+
+const buildWhatsAppMessage = (data) => {
+  const lines = [
+    "New appointment request — Barcruse Outpatient Clinic",
+    `Name: ${data.name || ""}`,
+    `Phone: ${data.phone || ""}`,
+    data.email ? `Email: ${data.email}` : null,
+    `Service: ${data.service || ""}`,
+    `Preferred date: ${data.date || ""}`,
+    data.notes ? `Notes: ${data.notes}` : null,
+  ].filter(Boolean);
+  return lines.join("\n");
+};
+
+const showFormMessage = (form, text, isError) => {
+  const messageEl = form.querySelector(".form-message");
+  if (!messageEl) return;
+  messageEl.textContent = text;
+  messageEl.classList.add("show");
+  messageEl.style.color = isError ? "#8d2d2d" : "";
+  messageEl.style.background = isError ? "#fff0f0" : "";
+};
+
+document.querySelectorAll("form[id^='appointment-form']").forEach((form) => form.addEventListener("submit", (event) => {
   event.preventDefault();
   const submit = form.querySelector("button[type=submit]");
-  submit.disabled = true;
-  submit.textContent = "Sending request…";
-  try {
-    const response = await fetch("/api/appointments", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(Object.fromEntries(new FormData(form))),
-    });
-    if (!response.ok) throw new Error("Unable to send");
-    form.reset();
-    message.textContent = "Thank you — your appointment request is in. Our care team will contact you shortly to confirm a time.";
-    message.classList.add("show");
-  } catch {
-    message.textContent = "We could not send that request right now. Please call +234 704 908 8169 and our team will help you.";
-    message.classList.add("show");
-    message.style.color = "#8d2d2d";
-    message.style.background = "#fff0f0";
-  } finally {
-    submit.disabled = false;
-    submit.textContent = "Request appointment";
+  const data = Object.fromEntries(new FormData(form));
+
+  const required = ["name", "phone", "service", "date"];
+  const missing = required.some((key) => !String(data[key] || "").trim());
+  if (missing) {
+    showFormMessage(form, "Please fill in your name, phone, service and preferred date.", true);
+    return;
   }
+
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(buildWhatsAppMessage(data))}`;
+
+  if (submit) submit.disabled = true;
+  window.open(waUrl, "_blank", "noopener");
+  showFormMessage(form, "Opening WhatsApp — just hit send there to complete your appointment request.", false);
+  form.reset();
+  if (submit) submit.disabled = false;
 }));
 
 document.querySelectorAll("[data-year]").forEach((node) => { node.textContent = new Date().getFullYear(); });
