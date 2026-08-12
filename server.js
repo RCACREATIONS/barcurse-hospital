@@ -4,6 +4,7 @@ const path = require('path');
 
 const PORT = 5000;
 const ROOT = __dirname;
+const APPOINTMENTS_FILE = path.join(ROOT, 'appointments.json');
 
 const MIME_TYPES = {
   '.html': 'text/html',
@@ -23,6 +24,44 @@ const MIME_TYPES = {
 
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
+
+  if (req.method === 'POST' && urlPath === '/api/appointments') {
+    let body = '';
+    req.on('data', (chunk) => {
+      body += chunk;
+      if (body.length > 10000) req.destroy();
+    });
+    req.on('end', () => {
+      try {
+        const input = JSON.parse(body || '{}');
+        const required = ['name', 'phone', 'service', 'date'];
+        if (required.some((key) => typeof input[key] !== 'string' || !input[key].trim())) {
+          res.writeHead(400, { 'Content-Type': 'application/json' });
+          res.end(JSON.stringify({ error: 'Name, phone, service and date are required.' }));
+          return;
+        }
+        let appointments = [];
+        if (fs.existsSync(APPOINTMENTS_FILE)) appointments = JSON.parse(fs.readFileSync(APPOINTMENTS_FILE, 'utf8'));
+        appointments.push({
+          id: `BC-${Date.now()}`,
+          name: input.name.trim(),
+          phone: input.phone.trim(),
+          email: typeof input.email === 'string' ? input.email.trim() : '',
+          service: input.service.trim(),
+          date: input.date.trim(),
+          notes: typeof input.notes === 'string' ? input.notes.trim() : '',
+          createdAt: new Date().toISOString(),
+        });
+        fs.writeFileSync(APPOINTMENTS_FILE, JSON.stringify(appointments, null, 2));
+        res.writeHead(201, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ ok: true }));
+      } catch {
+        res.writeHead(400, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify({ error: 'Invalid appointment request.' }));
+      }
+    });
+    return;
+  }
 
   if (urlPath === '/') urlPath = '/index.html';
 
